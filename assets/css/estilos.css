@@ -1,0 +1,398 @@
+:root {
+    /* Paleta: texto, líneas, fondo y colores */
+    --ink: #1b2a22;
+    --ink-soft: #55655b;
+    --line: #dde3da;
+    --paper: #f2f4ef;
+    --surface: #ffffff;
+
+    --orange: #e8710a;
+    --orange-dark: #c25d05;
+    --orange-tint: #fdeedd;
+    --green: #5f8a26;
+    --green-dark: #48691b;
+
+    --prio-alta: #c9392c;
+    --prio-media: #e3a008;
+    --prio-baja: #9aa5a0;
+
+    /* Tipografías: títulos y texto */
+    --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+
+    /* Variables de Bootstrap: hacen que use nuestra fuente y colores */
+    --bs-body-font-family: var(--font-body);
+    --bs-body-color: var(--ink);
+    --bs-body-bg: var(--paper);
+    --bs-link-color: var(--orange-dark);
+    --bs-link-hover-color: var(--orange);
+}
+
+/*  Base: fuentes y colores generales  */
+html { font-size: 15.5px; }
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+a { text-underline-offset: 3px; }
+
+/* Borde visible al navegar con teclado */
+:focus-visible {
+    outline: 3px solid rgba(232, 113, 10, .55);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* Menú superior */
+.app-navbar {
+    background: var(--ink);
+    padding-block: .7rem;
+    border-bottom: 3px solid var(--orange);
+}
+
+.app-navbar .navbar-brand {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+/* Anillo naranja y verde */
+.brand-mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: conic-gradient(var(--orange) 0 62%, var(--green) 62% 100%);
+    -webkit-mask: radial-gradient(circle, transparent 0 8px, #000 9px);
+            mask: radial-gradient(circle, transparent 0 8px, #000 9px);
+    flex: none;
+}
+
+.app-navbar .nav-link {
+    color: rgba(255, 255, 255, .72);
+    font-weight: 500;
+    border-radius: 8px;
+    padding: .45rem .8rem;
+    transition: color .15s, background-color .15s;
+}
+.app-navbar .nav-link:hover { color: #fff; background: rgba(255, 255, 255, .08); }
+
+/*  Botones: sobrescribe los colores de Bootstrap */
+.btn {
+    font-weight: 600;
+    border-radius: 9px;
+    transition: background-color .15s, border-color .15s, color .15s;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--orange);
+    --bs-btn-border-color: var(--orange);
+    --bs-btn-hover-bg: var(--orange-dark);
+    --bs-btn-hover-border-color: var(--orange-dark);
+    --bs-btn-active-bg: #a84f04;
+    --bs-btn-active-border-color: #a84f04;
+    --bs-btn-disabled-bg: var(--orange);
+    --bs-btn-disabled-border-color: var(--orange);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--orange-dark);
+    --bs-btn-border-color: #efb98a;
+    --bs-btn-hover-bg: var(--orange);
+    --bs-btn-hover-border-color: var(--orange);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--orange-dark);
+    --bs-btn-active-border-color: var(--orange-dark);
+}
+
+.btn-outline-danger {
+    --bs-btn-color: #b3261e;
+    --bs-btn-border-color: #ecb7b2;
+    --bs-btn-hover-bg: #b3261e;
+    --bs-btn-hover-border-color: #b3261e;
+}
+
+.btn-dark {
+    --bs-btn-bg: var(--ink);
+    --bs-btn-border-color: var(--ink);
+    --bs-btn-hover-bg: #0f1a14;
+    --bs-btn-hover-border-color: #0f1a14;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--ink-soft);
+    --bs-btn-border-color: var(--line);
+    --bs-btn-hover-bg: var(--ink);
+    --bs-btn-hover-border-color: var(--ink);
+}
+
+/* Tarjetas, formularios y alertas */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: none;
+}
+.card-footer {
+    background: transparent;
+    border-top: 1px solid var(--line);
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: .9rem;
+    color: var(--ink);
+    margin-bottom: .35rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 9px;
+    border-color: #cfd8cc;
+    background-color: #fff;
+    padding: .55rem .8rem;
+}
+.form-control::placeholder { color: #98a59d; }
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 .22rem rgba(232, 113, 10, .18);
+}
+
+/* Campo vacío marcado por app.js */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: var(--prio-alta);
+    background-image: none;
+    padding-right: .8rem;
+}
+
+.alert {
+    border: 0;
+    border-left: 4px solid currentColor;
+    border-radius: 10px;
+}
+
+/* Título de cada página  */
+.page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+}
+.page-head h1 { margin: 0; font-size: 2rem; }
+.page-head p  { margin: .2rem 0 0; color: var(--ink-soft); }
+
+/*  Resumen por estado  */
+.status-strip {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.status-cells {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.status-cell {
+    display: block;
+    padding: 1rem 1.2rem .9rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background-color .15s;
+}
+.status-cell + .status-cell { border-left: 1px solid var(--line); }
+.status-cell:hover { background: #f8faf6; color: var(--ink); }
+
+.status-cell strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.3rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.status-cell span {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: .35rem;
+    color: var(--ink-soft);
+    font-size: .92rem;
+    font-weight: 500;
+}
+/* Punto de color: --dot lo define cada celda */
+.status-cell span::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--dot);
+}
+.cell-pendiente { --dot: #e3a008; }
+.cell-proceso   { --dot: #2f7fd1; }
+.cell-resuelta  { --dot: var(--green); }
+
+.status-bar {
+    display: flex;
+    gap: 3px;
+    height: 8px;
+    padding: 0 1.2rem 1rem;
+    box-sizing: content-box;
+}
+.status-bar i {
+    display: block;
+    height: 8px;
+    border-radius: 99px;
+    min-width: 6px;
+}
+.seg-pendiente { background: #e3a008; }
+.seg-proceso   { background: #2f7fd1; }
+.seg-resuelta  { background: var(--green); }
+/* Barra gris cuando todavía no hay incidencias */
+.status-bar.is-empty i { background: var(--line); flex: 1; }
+
+/*  Tarjeta de filtros  */
+.filter-card { padding: 1rem 1.1rem; }
+
+/*  Tabla de incidencias  */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: #f7f9f5;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #f7f9f5;
+    color: var(--ink-soft);
+    font-size: .85rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--line);
+    padding: .8rem .85rem;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: .85rem .85rem;
+    border-color: var(--line);
+    vertical-align: middle;
+}
+
+/* Franja izquierda de cada fila: su color indica la prioridad */
+.table tbody td:first-child { box-shadow: inset 5px 0 0 var(--edge, transparent); }
+.prio-alta  { --edge: var(--prio-alta); }
+.prio-media { --edge: var(--prio-media); }
+.prio-baja  { --edge: var(--prio-baja); }
+
+.col-id { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.col-fecha { white-space: nowrap; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.col-equipo { font-weight: 600; }
+
+/* Descripción larga: se corta con "..."  */
+.desc-cell {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink-soft);
+}
+
+.estado-select {
+    min-width: 128px;
+    border-radius: 99px;
+    font-size: .85rem;
+    font-weight: 600;
+    padding-block: .3rem;
+}
+
+.table-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.1rem;
+    align-items: center;
+    color: var(--ink-soft);
+    font-size: .85rem;
+}
+.table-legend i {
+    display: inline-block;
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    margin-right: .35rem;
+    vertical-align: -2px;
+}
+
+.empty-state {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--ink-soft);
+}
+.empty-state strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: .2rem;
+}
+
+/*  Etiquetas redondeadas de estado y prioridad */
+.pill {
+    display: inline-block;
+    padding: .22rem .7rem;
+    border-radius: 99px;
+    font-size: .8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.estado-pendiente  { background: #fdf0d5; color: #7a5200; }
+.estado-en-proceso { background: #dcebfb; color: #174a84; }
+.estado-resuelta   { background: #e1efd0; color: #3b5d12; }
+
+.prioridad-alta  { background: #fbe2df; color: #8e2118; }
+.prioridad-media { background: #fbefcb; color: #7a5600; }
+.prioridad-baja  { background: #e8ece9; color: #46544c; }
+
+/*  Pantalla de login  */
+.auth-card { padding: 1.8rem; margin-top: 1.5rem; }
+.auth-card .brand-mark { width: 38px; height: 38px;
+    -webkit-mask: radial-gradient(circle, transparent 0 12px, #000 13px);
+            mask: radial-gradient(circle, transparent 0 12px, #000 13px);
+    margin-bottom: .9rem;
+}
+
+/*  Pie de página  */
+footer { color: var(--ink-soft); border-color: var(--line) !important; }
+
+/*  Pantallas pequeñas (celular) */
+@media (max-width: 576px) {
+    .page-head h1 { font-size: 1.6rem; }
+    .status-cell { padding: .8rem .8rem .7rem; }
+    .status-cell strong { font-size: 1.7rem; }
+    .status-cell span { font-size: .8rem; }
+    .status-bar { padding-inline: .8rem; }
+}
+
+/* Respeta a quien desactiva las animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
