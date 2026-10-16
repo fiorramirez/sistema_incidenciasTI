@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/auth.php';
 
 $titulo = 'Incidencias';
 
-// ---- Filtros: llegan por la URL (GET) y todos son opcionales ----
+//  Filtros: llegan por la URL (GET) y todos son opcionales 
 $f_lab    = trim($_GET['laboratorio'] ?? '');
 $f_estado = trim($_GET['estado'] ?? '');
 $f_prio   = trim($_GET['prioridad'] ?? '');
@@ -56,7 +56,7 @@ $resultado = $stmt->get_result();
 $incidencias = $resultado->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// ---- Resumen por estado: cuenta sobre toda la tabla, sin importar los filtros ----
+//  Resumen por estado: cuenta sobre toda la tabla, sin importar los filtros 
 $resumen = ['Pendiente' => 0, 'En proceso' => 0, 'Resuelta' => 0];
 $rs = $conn->query('SELECT estado, COUNT(*) AS total FROM incidencias GROUP BY estado');
 while ($fila = $rs->fetch_assoc()) {
